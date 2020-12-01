@@ -1,20 +1,26 @@
-pub fn factors(n: u64) -> Vec<u64> {
-    //unimplemented!("This should calculate the prime factors of {}", n)
-    let mut prime_factors: Vec<u64> = vec![n];
-    let mut quotient: u64 = prime_factors.pop().unwrap();
+pub fn factors(mut n: u64) -> Vec<u64> {
+    let mut prime_factors: Vec<u64> = vec![];
     let mut factor: u64 = 2; 
-    while factor < quotient {
-        if quotient % factor == 0 {
+    while factor < n {
+        if n % factor == 0 {
             prime_factors.push(factor);
-            prime_factors.push(quotient / factor);
-            quotient = prime_factors.pop().unwrap(); 
+            n /= factor
         } else {
             factor += 1;
         }
     }
-    prime_factors.push(quotient);
+    prime_factors.push(n);
     prime_factors
 }
 
-
 // see recursion solutions and investigate stack overflow for large numbers
+// pub fn factors(mut n: u64) -> Vec<u64> {
+//    let mut prime_factors = vec![];
+//
+//     while n > 1 {
+//        let i = (2..n+1).find(|x| n % x == 0 ).unwrap();
+//        prime_factors.push(i);
+//        n /= i;
+//    }
+//    prime_factors
+//}
