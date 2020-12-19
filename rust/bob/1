@@ -1,0 +1,30 @@
+// fn is_question. ends_with("?")
+// fn is_sentence 
+// fn is_YELL is str.make_ascii_uppercase ==
+// fn say nothing filter on whitespace
+
+pub fn is_question(message: &str) -> bool {
+    message.ends_with("?")
+}
+
+pub fn is_sentence(message: &str) -> bool {
+    message.ends_with(".")
+}
+
+pub fn is_yell(message: &str) -> bool {
+    message.make_ascii_uppercase() == message
+}
+
+pub fn is_void(message: &str) -> bool {
+    message.filter(|c| !c.is_whitespace) == ""
+}
+
+pub fn reply(message: &str) -> &str {
+    match (is_question(message), is_sentence(message), is_yell(message), is_void(message)) {
+        (true, false, false, false) => return "Sure.",
+        (false, false, true, false) => return "Whoa, chill out!",
+        (true, false, true, false) => return "Calm down, I know what I'm doing!",
+        (false, false, false, true) => return "Fine. Be that way!",
+        _ => return "Whatever."
+    };
+}
